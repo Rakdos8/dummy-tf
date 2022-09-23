@@ -20,7 +20,7 @@ data "aws_security_group" "std_sg" {
 resource "aws_instance" "dummy" {
   ami = data.aws_ami.ubuntu.id
 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = data.aws_key_pair.std.key_name
 
   vpc_security_group_ids = [
