@@ -4,7 +4,7 @@ import space.iceve.CloudConfig
 
 // Pipeline parameters
 final CloudConfig cloudCfg = CloudConfig.ICEVE
-final String repository = 'git@gitlab.com:iceve-private/dummy-tf.git'
+final String repository = 'git@github.com:Rakdos8/dummy-tf.git'
 final String branch = 'master'
 // End of parameters
 
