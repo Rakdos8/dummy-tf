@@ -23,7 +23,9 @@ terraformContext(cloudCfg, {
 		terraformApply(cloudCfg, true)
 		// Retrieve public IP address from TF output
 		container(cloudCfg.terraform) {
-			publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
+			withAWS(credentials: 'aws-root-key') {
+				publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
+			}
 		}
 	}
 })
