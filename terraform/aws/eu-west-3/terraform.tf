@@ -7,8 +7,14 @@ terraform {
       source  = "hashicorp/aws"
     }
   }
+
+  backend "s3" {
+    region = var.aws_region
+    bucket = "perso-terraform-states"
+    key    = "github.com/eu-west-3/dummy-tf.tf"
+  }
 }
 
 provider "aws" {
-  region = "eu-west-3"
+  region = var.aws_region
 }
