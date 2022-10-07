@@ -19,6 +19,6 @@ terraformContext(cloudCfg, {
 	gitCheckout(repository, branch)
 
 	dir('terraform/aws/eu-west-3') {
-		terraformPlan(cloudCfg)
+		terraformApply(cloudCfg, false)
 	}
 })
