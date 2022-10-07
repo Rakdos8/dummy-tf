@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    region = var.aws_region
+    region = "eu-west-3"
     bucket = "perso-terraform-states"
     key    = "github.com/eu-west-3/dummy-tf.tf"
   }
