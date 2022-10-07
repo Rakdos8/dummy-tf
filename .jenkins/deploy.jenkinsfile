@@ -38,8 +38,9 @@ ansibleContext(cloudCfg, {
 		ansiblePlaybook(
 				cloudCfg,
 				'playbooks/init-stack.yml',
+				'aws-std-key',
 				[
-						'--extra-vars "instance_ip=' + publicIp + '"'
+						'"instance_ip=' + publicIp + '"'
 				]
 		)
 	}
