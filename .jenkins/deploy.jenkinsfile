@@ -14,11 +14,29 @@ properties([
 		buildDiscarder(logRotator(numToKeepStr: '10'))
 ])
 
-// Create Docker image
+// Create infrastructure in AWS
+String publicIp = ''
 terraformContext(cloudCfg, {
 	gitCheckout(repository, branch)
 
 	dir('terraform/aws/eu-west-3') {
 		terraformApply(cloudCfg, false)
+		// Retrieve public IP address from TF output
+		publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
+	}
+})
+
+ansibleContext(cloudCfg, {
+	gitCheckout(repository, branch)
+
+	dir('ansible') {
+		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
+		ansiblePlaybook(
+				cloudCfg,
+				'playbooks/init-stack.yml',
+				[
+						'--extra-vars "instance_ip=' + publicIp + '"'
+				]
+		)
 	}
 })

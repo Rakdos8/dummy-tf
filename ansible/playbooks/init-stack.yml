@@ -1,0 +1,7 @@
+---
+
+- hosts: "{{ instance_ip }}"
+  roles:
+    - std-utilities
+    - comm-docker/docker
+

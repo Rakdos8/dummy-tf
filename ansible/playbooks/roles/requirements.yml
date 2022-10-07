@@ -1,0 +1,4 @@
+- src: git@github.com:geerlingguy/ansible-role-docker.git
+  name: comm-docker
+  version: a15de78905ef5b55c224dc74a4dc7ef749bc6985
+  scm: git
