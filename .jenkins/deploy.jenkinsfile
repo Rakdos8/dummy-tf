@@ -20,9 +20,11 @@ terraformContext(cloudCfg, {
 	gitCheckout(repository, branch)
 
 	dir('terraform/aws/eu-west-3') {
-		terraformApply(cloudCfg, false)
+		terraformApply(cloudCfg, true)
 		// Retrieve public IP address from TF output
-		publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
+		container(cloudCfg.terraform) {
+			publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
+		}
 	}
 })
 
