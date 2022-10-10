@@ -37,6 +37,7 @@ ansibleContext(cloudCfg, {
 		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
 		ansiblePlaybook(
 				cloudCfg,
+				'localhost,',
 				'playbooks/init-stack.yml',
 				'aws-std-key',
 				[
