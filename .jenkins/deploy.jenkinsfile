@@ -37,8 +37,8 @@ ansibleContext(cloudCfg, {
 		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
 		ansiblePlay(
 				cloudCfg,
-				'localhost,',
 				'playbooks/init-stack.yml',
+				'localhost,',
 				'aws-std-key',
 				[
 						'"instance_ip=' + publicIp + '"'
