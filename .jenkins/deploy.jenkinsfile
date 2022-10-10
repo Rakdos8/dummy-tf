@@ -35,7 +35,7 @@ ansibleContext(cloudCfg, {
 
 	dir('ansible') {
 		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
-		ansiblePlaybook(
+		ansiblePlay(
 				cloudCfg,
 				'localhost,',
 				'playbooks/init-stack.yml',
