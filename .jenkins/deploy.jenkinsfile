@@ -41,7 +41,7 @@ ansibleContext(cloudCfg, {
 				'localhost,',
 				'aws-std-key',
 				[
-						'"instance_ip=' + publicIp + '"'
+						'--extra-vars instance_ip="' + publicIp + '"'
 				]
 		)
 	}
