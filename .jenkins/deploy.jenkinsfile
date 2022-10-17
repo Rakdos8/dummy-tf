@@ -33,7 +33,7 @@ ansibleContext(cloudCfg, {
 		ansibleRunPlaybook(
 				cloudCfg,
 				'playbooks/init-stack.yml',
-				'/tmp/inventory.inv',
+				'inventory.inv',
 				'aws-std-key'
 		)
 	}
