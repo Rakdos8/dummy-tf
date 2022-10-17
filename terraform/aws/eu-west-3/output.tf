@@ -1,5 +1,5 @@
 resource "local_file" "ansible_inventory" {
-  filename             = "/tmp/inventory.inv"
+  filename             = "../../../ansible/inventory.inv"
   file_permission      = "0640"
   directory_permission = "0750"
 
