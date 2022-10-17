@@ -25,5 +25,17 @@ resource "aws_instance" "dummy" {
 
   vpc_security_group_ids = [
     data.aws_security_group.std_sg.id
+    aws_security_group.sg_node_exporter.id
   ]
+}
+
+resource "aws_security_group" "sg_node_exporter" {
+  name = "node_exporter"
+  vpc_id = data.aws_vpc.std_vpc.id
+
+  egress {
+    from_port = 9100
+    protocol  = "-1"
+    to_port   = 9100
+  }
 }
