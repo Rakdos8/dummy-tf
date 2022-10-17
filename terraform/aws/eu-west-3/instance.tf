@@ -24,7 +24,7 @@ resource "aws_instance" "dummy" {
   key_name       = data.aws_key_pair.std.key_name
 
   vpc_security_group_ids = [
-    data.aws_security_group.std_sg.id
+    data.aws_security_group.std_sg.id,
     aws_security_group.sg_node_exporter.id
   ]
 }
