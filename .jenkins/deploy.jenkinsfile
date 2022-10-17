@@ -1,6 +1,7 @@
 @Library('iceve-library@aws-terraform')
 
 import space.iceve.CloudConfig
+import space.iceve.release.ReleaserStrategy
 
 // Pipeline parameters
 final CloudConfig cloudCfg = CloudConfig.ICEVE
@@ -20,6 +21,7 @@ terraformContext(cloudCfg, {
 
 	dir('terraform/aws/eu-west-3') {
 		terraformApply(cloudCfg, true)
+		ReleaserStrategy.getReleaserStrategy('version.json').release()
 	}
 })
 
