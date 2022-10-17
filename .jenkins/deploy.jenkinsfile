@@ -15,18 +15,11 @@ properties([
 ])
 
 // Create infrastructure in AWS
-String publicIp = ''
 terraformContext(cloudCfg, {
 	gitCheckout(repository, branch)
 
 	dir('terraform/aws/eu-west-3') {
 		terraformApply(cloudCfg, true)
-		// Retrieve public IP address from TF output
-		container(cloudCfg.terraform) {
-			withAWS(credentials: 'aws-root-key') {
-				publicIp = sh(returnStdout: true, script: 'terraform output dummy_public_ip').trim()
-			}
-		}
 	}
 })
 
@@ -35,10 +28,10 @@ ansibleContext(cloudCfg, {
 
 	dir('ansible') {
 		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
-		ansiblePlay(
+		ansibleRunPlaybook(
 				cloudCfg,
 				'playbooks/init-stack.yml',
-				'localhost,',
+				'/tmp/inventory.inv',
 				'aws-std-key',
 				[
 						'--extra-vars instance_ip="' + publicIp + '"'
