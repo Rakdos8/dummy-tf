@@ -1,0 +1,4 @@
+[nodes]
+%{ for index, nodeIp in dummyNodes ~}
+dummy_node-${index} ansible_host=${nodeIp}
+%{ endfor ~}
