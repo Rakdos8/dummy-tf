@@ -21,7 +21,6 @@ terraformContext(cloudCfg, {
 
 	dir('terraform/aws/eu-west-3') {
 		terraformApply(cloudCfg, true)
-		sleep time: 60000, unit: 'SECONDS'
 		ReleaserStrategy.getReleaserStrategy('version.json').release()
 	}
 })
