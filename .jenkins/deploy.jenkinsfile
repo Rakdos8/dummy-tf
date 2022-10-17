@@ -32,10 +32,7 @@ ansibleContext(cloudCfg, {
 				cloudCfg,
 				'playbooks/init-stack.yml',
 				'/tmp/inventory.inv',
-				'aws-std-key',
-				[
-						'--extra-vars instance_ip="' + publicIp + '"'
-				]
+				'aws-std-key'
 		)
 	}
 })
