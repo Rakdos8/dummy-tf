@@ -22,9 +22,13 @@ terraformContext(cloudCfg, {
 	dir('terraform/aws/eu-west-3') {
 		input(
 				message: 'Parameters',
-				ok: 'Prepare Terraform ?'
+				ok: 'Init TF ?'
 		)
-		terraformApply(cloudCfg, false)
+		terraformApply(cloudCfg, true)
+		def inputResult = input(
+				message: 'Parameters',
+				ok: 'Approve terraform plan ?'
+		)
 		ReleaserStrategy.getReleaserStrategy('version.json').release()
 	}
 })
