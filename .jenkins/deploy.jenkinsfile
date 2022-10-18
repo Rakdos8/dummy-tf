@@ -20,8 +20,11 @@ terraformContext(cloudCfg, {
 	gitCheckout(repository, branch)
 
 	dir('terraform/aws/eu-west-3') {
-		terraformApply(cloudCfg, true)
-		sleep time: 60000, unit: 'SECONDS'
+		input(
+				message: 'Parameters',
+				ok: 'Prepare Terraform ?'
+		)
+		terraformApply(cloudCfg, false)
 		ReleaserStrategy.getReleaserStrategy('version.json').release()
 	}
 })
