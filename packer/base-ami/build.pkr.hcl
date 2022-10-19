@@ -20,7 +20,7 @@ source "amazon-ebs" "basic-ebs" {
   source_ami_filter {
     filters = {
       virtualization-type = "hvm"
-      name                = "Ubuntu 20.04.*"
+      name                = "Ubuntu.*20.04.*"
       root-device-type    = "ebs"
     }
 
