@@ -1,4 +1,4 @@
-- src: https://github.com/cloudalchemy/ansible-node-exporter.git
+- src: git@github.com:cloudalchemy/ansible-node-exporter.git
   name: cloud-alchemy-node-exporter
   version: c2401cfed554906843520cbac7ae2a3a132c590e
   scm: git
