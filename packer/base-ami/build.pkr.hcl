@@ -20,7 +20,7 @@ source "amazon-ebs" "basic-ebs" {
   source_ami_filter {
     filters = {
       virtualization-type = "hvm"
-      name                = "Ubuntu.*20.04.*"
+      name                = "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*"
       root-device-type    = "ebs"
     }
 
