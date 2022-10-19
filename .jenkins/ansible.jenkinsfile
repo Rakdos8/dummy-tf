@@ -1,0 +1,31 @@
+@Library('iceve-library@aws-terraform')
+
+import space.iceve.CloudConfig
+import space.iceve.release.ReleaserStrategy
+
+// Pipeline parameters
+final CloudConfig cloudCfg = CloudConfig.ICEVE
+final String repository = 'git@github.com:Rakdos8/dummy-tf.git'
+final String branch = 'master'
+// End of parameters
+
+properties([
+		disableConcurrentBuilds(),
+		// Only keep 10 builds in memory (avoid to use extra disk space)
+		buildDiscarder(logRotator(numToKeepStr: '10'))
+])
+
+// Configure instances
+ansibleContext(cloudCfg, {
+	gitCheckout(repository, branch)
+
+	dir('ansible') {
+		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
+		ansibleRunPlaybook(
+				cloudCfg,
+				'playbooks/init-stack.yml',
+				'inventory.inv',
+				'aws-std-key'
+		)
+	}
+})
