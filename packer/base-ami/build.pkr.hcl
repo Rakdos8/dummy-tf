@@ -24,7 +24,7 @@ source "amazon-ebs" "basic-ebs" {
       root-device-type    = "ebs"
     }
 
-    owners      = ["565feec9-3d43-413e-9760-c651546613f2"] # Canonical Group Limited
+    owners      = ["099720109477"] # Canonical Group Limited
     most_recent = true
   }
 }
