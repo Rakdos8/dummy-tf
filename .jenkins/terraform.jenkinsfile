@@ -25,7 +25,7 @@ terraformContext(cloudCfg, {
 	}
 
 	final String ansibleJobName = '(ansible) Test CI+CD'
-	stage(ansibleJobName) {
+	stage('[Job] ' + ansibleJobName) {
 		build wait: true, propagate: true, job: ansibleJobName
 	}
 })
