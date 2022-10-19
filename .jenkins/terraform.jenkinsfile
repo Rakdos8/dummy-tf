@@ -23,18 +23,9 @@ terraformContext(cloudCfg, {
 		terraformApply(cloudCfg, true)
 		ReleaserStrategy.getReleaserStrategy('version.json').release()
 	}
-})
 
-ansibleContext(cloudCfg, {
-	gitCheckout(repository, branch)
-
-	dir('ansible') {
-		ansibleRequirements(cloudCfg, 'playbooks/roles/requirements.yml')
-		ansibleRunPlaybook(
-				cloudCfg,
-				'playbooks/init-stack.yml',
-				'inventory.inv',
-				'aws-std-key'
-		)
+	final String ansibleJobName = '(ansible) Test CI+CD'
+	stage(ansibleJobName) {
+		build wait: true, propagate: true, job: ansibleJobName
 	}
 })
